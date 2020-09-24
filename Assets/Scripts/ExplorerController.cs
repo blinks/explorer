@@ -97,7 +97,7 @@ public class ExplorerController : MonoBehaviour
         {
             // Use aimControl (already normalized) * drawPower.
             var b = Instantiate(projectile).GetComponent<Rigidbody2D>();
-            b.position = body.position + aimControl;
+            b.position = body.position + aimControl / 2f;
             b.velocity = aimControl * looseStrength * (1f + drawPower());
             b.SetRotation(Mathf.Atan2(aimControl.y, aimControl.x) * Mathf.Rad2Deg);
 

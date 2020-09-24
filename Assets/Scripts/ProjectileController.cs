@@ -2,18 +2,17 @@
 
 public class ProjectileController : MonoBehaviour
 {
-    Rigidbody2D body;
-
-    void Start()
-    {
-        // Memoize the body for update.
-        body = GetComponent<Rigidbody2D>();
-    }
+    bool frozen = false;
 
     void Update()
     {
-        // Rotate to follow the "arrowhead".
-        var v = body.velocity;
-        body.SetRotation(Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg);
+        // TODO: If frozen, start growing a platform.
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // TODO: Only collide with terrain.
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        frozen = true;
     }
 }
