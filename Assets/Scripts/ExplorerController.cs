@@ -10,7 +10,8 @@ public class ExplorerController : MonoBehaviour
     public Vector2 stopForce = new Vector2(10f, 0f);
     public float jumpForce = 50f;
     public GameObject target;
-    public GameObject arrowPrefab;
+    public GameObject projectile;
+    public float looseStrength = 50f;
 
     // Collider info.
     Rigidbody2D body;
@@ -95,7 +96,11 @@ public class ExplorerController : MonoBehaviour
         if (bowState == BowState.LOOSING)
         {
             // Use aimControl (already normalized) * drawPower.
-            Debug.LogFormat("FIRE {0}", power);
+            var b = Instantiate(projectile).GetComponent<Rigidbody2D>();
+            b.position = body.position + aimControl;
+            b.velocity = aimControl * looseStrength * (1f + drawPower());
+            b.SetRotation(Mathf.Atan2(aimControl.y, aimControl.x) * Mathf.Rad2Deg);
+
             bowState = BowState.READY;
             drawStartTime = Mathf.Infinity;
         }
