@@ -68,17 +68,16 @@ public class ExplorerController : MonoBehaviour
         target.transform.localPosition = aimControl * 2f * (1.5f - power);
         target.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(0f, 0f, 0f, 0f), Color.white, power);
 
-        // Stop or reverse force.
-        if (moveControlZero && grounded
-          || Vector2.Dot(moveControl, body.velocity) < 0)
+        // Stop or reverse force if grounded && ready.
+        if (grounded && bowState == BowState.READY
+            && (moveControlZero || Vector2.Dot(moveControl, body.velocity) < 0))
         {
             body.AddForce(-body.velocity * stopForce);
         }
 
-        // Run
+        // Run, unless drawing the bow.
         if (!moveControlZero && bowState == BowState.READY)
         {
-            // no movement during a shot.
             body.AddForce(moveControl * moveForce);
         }
         var v = body.velocity;
