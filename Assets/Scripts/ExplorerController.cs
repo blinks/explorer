@@ -37,6 +37,18 @@ public class ExplorerController : MonoBehaviour
         collider2d = GetComponent<CapsuleCollider2D>();
     }
 
+    private void Update()
+    {
+        if (aimControl.x < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (aimControl.x > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
+
     private void FixedUpdate()
     {
         var length = collider2d.GetContacts(contacts);
@@ -48,7 +60,7 @@ public class ExplorerController : MonoBehaviour
         {
             for (var i = 0; i < length; i++)
             {
-                if (contacts[i].normal.y > .5)
+                if (Vector2.Dot(Vector2.up, contacts[i].normal) > .5)
                 {
                     grounded = true;
                 }
