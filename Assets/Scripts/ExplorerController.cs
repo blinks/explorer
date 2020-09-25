@@ -12,17 +12,20 @@ public class ExplorerController : MonoBehaviour
     public GameObject target;
     public GameObject projectile;
     public float looseStrength = 50f;
+    public float groundedLagTime = 0.1f;
+    public float jumpingLagTime = 0.1f;
+    public LayerMask groundMask;
 
     // Collider info.
     Rigidbody2D body;
     CapsuleCollider2D collider2d;
     readonly ContactPoint2D[] contacts = new ContactPoint2D[8];
-    bool grounded = false;
+    float groundTime = Mathf.NegativeInfinity;
 
     // Control info.
     Vector2 moveControl;
     Vector2 aimControl = Vector2.left;
-    bool jumping = false;
+    float jumpTime = Mathf.NegativeInfinity;
 
     enum BowState
     {
@@ -51,20 +54,10 @@ public class ExplorerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var length = collider2d.GetContacts(contacts);
-        if (length == 0)
+        // Use raycast instead of collider contacts because the latter doesn't work with platform effector.
+        if (Physics2D.Raycast(body.position, Vector2.down, 1f, groundMask))
         {
-            grounded = false;
-        }
-        else
-        {
-            for (var i = 0; i < length; i++)
-            {
-                if (Vector2.Dot(Vector2.up, contacts[i].normal) > .5)
-                {
-                    grounded = true;
-                }
-            }
+            groundTime = Time.time + groundedLagTime;
         }
 
         // Calculate whether the player is moving or not only once.
@@ -82,7 +75,7 @@ public class ExplorerController : MonoBehaviour
         target.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(0f, 0f, 0f, 0f), Color.white, power);
 
         // Stop or reverse force if grounded && ready.
-        if (grounded && bowState == BowState.READY
+        if (groundTime > Time.time && bowState == BowState.READY
             && (moveControlZero || Vector2.Dot(moveControl, body.velocity) < 0))
         {
             body.AddForce(-body.velocity * stopForce);
@@ -98,10 +91,10 @@ public class ExplorerController : MonoBehaviour
         body.velocity = v;
 
         // Jump
-        if (grounded && jumping)
+        if (groundTime > Time.time && jumpTime > Time.time)
         {
             body.AddForce(Vector2.up * jumpForce);
-            jumping = false; // needs a new press for a second jump.
+            jumpTime = Mathf.NegativeInfinity; // needs a new press for a second jump.
         }
 
         // Fire
@@ -125,7 +118,8 @@ public class ExplorerController : MonoBehaviour
 
     public void OnJump(InputValue input)
     {
-        jumping = input.Get<float>() > 0.5f;
+        // Store the time "jump" was pressed to enable jumping a little early.
+        jumpTime = input.Get<float>() > 0.5f ? Time.time + jumpingLagTime : Mathf.NegativeInfinity;
     }
 
     public void OnFire(InputValue input)
