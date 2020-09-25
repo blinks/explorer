@@ -11,6 +11,7 @@ public class ExplorerController : MonoBehaviour {
   public GameObject target;
   public GameObject projectile;
   public float looseStrength = 50f;
+  public float maxStrength = 10f;
   public float groundedLagTime = 0.1f;
   public float jumpingLagTime = 0.1f;
   public LayerMask groundMask;
@@ -43,12 +44,20 @@ public class ExplorerController : MonoBehaviour {
     } else if (aimControl.x > 0) {
       GetComponent<SpriteRenderer>().flipX = false;
     }
+
+    GetComponent<Animator>().SetBool("Drawing", bowState == BowState.DRAWING);
   }
 
   private void FixedUpdate() {
+    // Grab a reference to our animator.
+    var animator = GetComponent<Animator>();
+
     // Use raycast instead of collider contacts because the latter doesn't work with platform effector.
     if (Physics2D.Raycast(body.position, Vector2.down, 1f, groundMask)) {
       groundTime = Time.time + groundedLagTime;
+      animator.SetBool("Grounded", true);
+    } else {
+      animator.SetBool("Grounded", false);
     }
 
     // Calculate whether the player is moving or not only once.
@@ -62,7 +71,7 @@ public class ExplorerController : MonoBehaviour {
     // Also draw it closer to the explorer (and brighter) as draw time increases.
     var power = drawPower();
     target.transform.localPosition = aimControl * 2f * (1.5f - power);
-    target.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(0f, 0f, 0f, 0f), Color.white, power);
+    target.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(.5f, .5f, .5f, .5f), Color.white, power);
 
     // Stop or reverse force if grounded && ready.
     if (groundTime > Time.time && bowState == BowState.READY
@@ -71,11 +80,17 @@ public class ExplorerController : MonoBehaviour {
     }
 
     // Run, unless drawing the bow.
+    animator.SetBool("Ducking", false);
     if (!moveControlZero && bowState == BowState.READY) {
       body.AddForce(moveControl * moveForce);
+      if (moveControl.y < -0.5f) {
+        animator.SetBool("Ducking", true);
+      }
     }
     var v = body.velocity;
     v.x = Mathf.Clamp(v.x, -10f, 10f);
+    animator.SetFloat("Walk Speed", Mathf.Abs(v.x));
+    animator.SetFloat("VelocityY", v.y);
     body.velocity = v;
 
     // Jump
@@ -89,7 +104,7 @@ public class ExplorerController : MonoBehaviour {
       // Use aimControl (already normalized) * drawPower.
       var b = Instantiate(projectile).GetComponent<Rigidbody2D>();
       b.position = body.position + aimControl / 2f;
-      b.velocity = aimControl * looseStrength * (1f + drawPower());
+      b.velocity = aimControl * looseStrength * Mathf.Pow(maxStrength, drawPower());
       b.SetRotation(Mathf.Atan2(aimControl.y, aimControl.x) * Mathf.Rad2Deg);
 
       bowState = BowState.READY;
