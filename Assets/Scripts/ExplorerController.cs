@@ -2,7 +2,6 @@
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(PlayerInput))]
 public class ExplorerController : MonoBehaviour {
   public Vector2 moveForce = new Vector2(20f, 0f);
@@ -19,7 +18,6 @@ public class ExplorerController : MonoBehaviour {
 
   // Collider info.
   Rigidbody2D body;
-  CapsuleCollider2D collider2d;
   readonly ContactPoint2D[] contacts = new ContactPoint2D[8];
   bool wasGrounded = false;
   float groundTime = 0f;
@@ -38,7 +36,6 @@ public class ExplorerController : MonoBehaviour {
 
   private void Start() {
     body = GetComponent<Rigidbody2D>();
-    collider2d = GetComponent<CapsuleCollider2D>();
   }
 
   private void Update() {

@@ -12,15 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef07baf116a96433d99be56ae64be96e, type: 3}
   m_Name: DirtTile
   m_EditorClassIdentifier: 
-  northwest: {fileID: 4265084766647283260, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  north: {fileID: -532162185956911045, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  northeast: {fileID: 8562055069901307928, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  west: {fileID: 1655788453566628044, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  east: {fileID: -7870257766542881090, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  southwest: {fileID: -3649188174584768534, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  south: {fileID: -3119610544448695023, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  southeast: {fileID: 1771724878465667398, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  openNorthwest: {fileID: 1918584702977717035, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  openNortheast: {fileID: -3008563812197626363, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  openSouthwest: {fileID: -5508052847991461720, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
-  openSoutheast: {fileID: -1784900983921113739, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  m_Sprite: {fileID: -2334187777732383986, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Transform:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  m_InstancedGameObject: {fileID: 0}
+  m_Flags: 1
+  m_ColliderType: 2
+  broken: {fileID: -2334187777732383986, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  northwest: {fileID: 5684370940383912944, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  north: {fileID: -2454505615539805915, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  northeast: {fileID: 461108257496042535, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  west: {fileID: 1281557678465988562, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  east: {fileID: 8274440689628392303, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  southwest: {fileID: 3039950834529625568, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  south: {fileID: 2714703541534616229, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  southeast: {fileID: 4634769448466700876, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  openNorthwest: {fileID: 4343939446307709760, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  openNortheast: {fileID: -5596966570086781983, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  openSouthwest: {fileID: 7843484805633745934, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
+  openSoutheast: {fileID: -7136623199302319082, guid: daf1b677cc46241098e5e2b7b1d53b2a, type: 3}
