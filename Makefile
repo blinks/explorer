@@ -6,6 +6,7 @@ all : win
 # Build Windows channel to "Build/windows/under"
 win : Build/windows/under/Explorer.exe
 	${BUTLER} push Build/windows/under blinks/under:windows-alpha
+	${BUTLER} status blinks/under:windows-alpha
 
 # TODO: Build Mac channel to "Build/mac/under"
 

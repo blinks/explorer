@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef07baf116a96433d99be56ae64be96e, type: 3}
+  m_Name: IceTile
+  m_EditorClassIdentifier: 
+  northwest: {fileID: -3024316181330496650, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  north: {fileID: 3887351750930402423, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  northeast: {fileID: -3773224588940223816, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  west: {fileID: -2412627478910623512, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  east: {fileID: -154882373750582577, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  southwest: {fileID: -938127171967201211, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  south: {fileID: 6269046325221046086, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  southeast: {fileID: -3554533872755111172, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openNorthwest: {fileID: 875599754950358338, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openNortheast: {fileID: 3504424702529435494, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openSouthwest: {fileID: -4763613773821903420, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openSoutheast: {fileID: -6008595451996192996, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}

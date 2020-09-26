@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef07baf116a96433d99be56ae64be96e, type: 3}
+  m_Name: DirtTile
+  m_EditorClassIdentifier: 
+  northwest: {fileID: 4265084766647283260, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  north: {fileID: -532162185956911045, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  northeast: {fileID: 8562055069901307928, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  west: {fileID: 1655788453566628044, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  east: {fileID: -7870257766542881090, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  southwest: {fileID: -3649188174584768534, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  south: {fileID: -3119610544448695023, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  southeast: {fileID: 1771724878465667398, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openNorthwest: {fileID: 1918584702977717035, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openNortheast: {fileID: -3008563812197626363, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openSouthwest: {fileID: -5508052847991461720, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
+  openSoutheast: {fileID: -1784900983921113739, guid: 8129aaadf7fab485f966fb1695f25908, type: 3}
